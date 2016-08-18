@@ -4,8 +4,10 @@ module.exports = {
         "commonjs": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "angular"],
     "rules": {
+        "no-console":0,
+        "angular/log":0,
         "accessor-pairs": "error",
         "array-bracket-spacing": "error",
         "array-callback-return": "error",
