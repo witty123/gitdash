@@ -2,7 +2,7 @@
   "name": "gitdash",
   "version": "1.0.0",
   "description": "Dashboard for github",
-  "main": "app.js",
+  "main": "app-server.js",
   "scripts": {
     "start": "node app-server.js"
   },

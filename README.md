@@ -37,8 +37,6 @@ npm install
 bower install
 ```
 
-If you clone this repo you would already have these present.
-
 ### Run the Application
 
 We have preconfigured the project with a simple development web server.  The simplest way to start
