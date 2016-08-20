@@ -5,5 +5,5 @@ before_script:
   - npm install -g bower
   - npm install -g gulp
   - npm install -g karma
-  - bower install
+  - npm install
   - gulp
