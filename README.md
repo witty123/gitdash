@@ -1,3 +1,8 @@
+[![Code Climate](https://codeclimate.com/repos/57b56dabbd7db80dbe00344e/badges/5865eeec766a9fb5d895/gpa.svg)](https://codeclimate.com/repos/57b56dabbd7db80dbe00344e/feed)
+[![Test Coverage](https://codeclimate.com/repos/57b56dabbd7db80dbe00344e/badges/5865eeec766a9fb5d895/coverage.svg)](https://codeclimate.com/repos/57b56dabbd7db80dbe00344e/coverage)
+[![Issue Count](https://codeclimate.com/repos/57b56dabbd7db80dbe00344e/badges/5865eeec766a9fb5d895/issue_count.svg)](https://codeclimate.com/repos/57b56dabbd7db80dbe00344e/feed)
+[![Build Status](https://travis-ci.org/witty123/gitdash.svg?branch=master)](https://travis-ci.org/witty123/gitdash)
+
 # gitdash - Dashboard for github
 
 This project is an application for analysing your activity on github. Project will be submitted as an entry to helloworld project at Practo.
