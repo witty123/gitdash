@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-var config = require("./config");
+// var config = require("./config");
 var path = require("path");
 
 app.use('/public', express.static(__dirname + '/../app/public'));
