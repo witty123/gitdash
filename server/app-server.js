@@ -1,6 +1,5 @@
 var express = require("express");
 var app = express();
-var request = require("request");
 var token = {};
 var config = require("./config");
 var path = require("path");
