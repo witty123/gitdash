@@ -55,10 +55,6 @@ app.get('/', function (req, res) {
 app.use('/public', express.static(__dirname + '/../app/public'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'));
 
-app.get('/', function(req, res) {
-    
-});
-
 app.listen(3000, function() {
 	console.log("Listening on 3000 port.")
 });
