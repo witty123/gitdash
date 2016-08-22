@@ -1,54 +1,127 @@
-var express = require("express");
-var app = express();
-var token = {};
-var config = require("./config");
-var path = require("path");
+var express = require('express');
+var passport = require('passport');
+var util = require('util');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var GitHubStrategy = require('passport-github2').Strategy;
+var partials = require('express-partials');
+var request = require("request");
+var url = require("url");
+var config = require("./config.json")
+var path = require("path")
 
-var oauth2 = require('simple-oauth2')({
-  clientID: config.clientID,
-  clientSecret: config.clientSecret,
-  site: 'https://github.com/login',
-  tokenPath: '/oauth/access_token',
-  authorizationPath: '/oauth/authorize'
-});
-// Authorization uri definition
-var authorization_uri = oauth2.authCode.authorizeURL({
-  redirect_uri: 'http://localhost:3000/callback',
-  scope: 'notifications',
-  state: '3(#0/!~'
+var GITHUB_CLIENT_ID = config.clientID;
+var GITHUB_CLIENT_SECRET = config.clientSecret;
+
+// Passport session setup.
+//   To support persistent login sessions, Passport needs to be able to
+//   serialize users into and deserialize users out of the session.  Typically,
+//   this will be as simple as storing the user ID when serializing, and finding
+//   the user by ID when deserializing.  However, since this example does not
+//   have a database of user records, the complete GitHub profile is serialized
+//   and deserialized.
+passport.serializeUser(function(user, done) {
+  done(null, user);
 });
 
-// Initial page redirecting to Github
-app.get('/auth', function (req, res) {
-    res.redirect(authorization_uri);
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
 });
 
-// Callback service parsing the authorization token and asking for the access token
-app.get('/callback', function (req, res) {
-  var code = req.query.code;
-  oauth2.authCode.getToken({
-    code: code,
-    redirect_uri: 'http://localhost:3000/callback'
-  }, saveToken);
- 
-  function saveToken(error, result) {
-    if (error) { console.log('Access Token Error', error.message); }
-    result = {
-    'access_token': result.split('=')[1].split('&')[0],
-    'expires_in': '909009090'
-    };
-    token = oauth2.accessToken.create(result); 
-    console.log(token);
+// Use the GitHubStrategy within Passport.
+//   Strategies in Passport require a `verify` function, which accept
+//   credentials (in this case, an accessToken, refreshToken, and GitHub
+//   profile), and invoke a callback with a user object.
+passport.use(new GitHubStrategy({
+    clientID: GITHUB_CLIENT_ID,
+    clientSecret: GITHUB_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
+      
+      // To keep the example simple, the user's GitHub profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the GitHub account with a user record in your database,
+      // and return that user instead.
+      profile.access_token = accessToken;
+      //console.log(profile);
+      return done(null, profile);
+    });
   }
-  res.sendFile(path.resolve((__dirname + '/../app' + '/index.html')));
-  console.error(token);
+));
+
+var app = express();
+
+// configure Express
+app.set('views', path.resolve(__dirname + '/../app/views'));
+app.set('view engine', 'ejs');
+app.use(partials());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(__dirname + '/public'));
+
+
+app.get('/', function(req, res){
+  //console.log(req.user.access_token);
+  //console.log(req.session)
+  res.render(path.resolve(__dirname + '/../app/index'), { user: req.user });
+});
+
+app.get('/account', ensureAuthenticated, function(req, res){
+  res.render('account', { user: req.user });
+});
+
+app.get('/login', function(req, res){
+  res.render('login', { user: req.user });
+});
+
+// GET /auth/github
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  The first step in GitHub authentication will involve redirecting
+//   the user to github.com.  After authorization, GitHub will redirect the user
+//   back to this application at /auth/github/callback
+app.get('/auth/github',
+  passport.authenticate('github', { scope: [ 'user' ] }),
+  function(req, res){
+    // The request will be redirected to GitHub for authentication, so this
+    // function will not be called.
+  });
+
+// GET /auth/github/callback
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function will be called,
+//   which, in this example, will redirect the user to the home page.
+app.get('/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 
-app.get('/', function (req, res) {
-  res.send('Hello<br><a href="/auth">Log in with Github</a>');
-});
-
+// Simple route middleware to ensure user is authenticated.
+//   Use this route middleware on any resource that needs to be protected.  If
+//   the request is authenticated (typically via a persistent login session),
+//   the request will proceed.  Otherwise, the user will be redirected to the
+//   login page.
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}
 
 
 app.use('/public', express.static(__dirname + '/../app/public'));
