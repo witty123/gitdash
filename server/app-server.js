@@ -1,3 +1,4 @@
+"use strict";
 var express = require('express');
 var passport = require('passport');
 var session = require('express-session');
@@ -5,11 +6,11 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var GitHubStrategy = require('passport-github2').Strategy;
 var partials = require('express-partials');
-var config = require("./config.json")
-var path = require("path")
+var config = require("./config.json");
+var path = require("path");
 
 var GITHUB_CLIENT_ID = config.clientID;
-var GITHUB_CLIENT_SECRET = config.clientSecret;
+var GITHUB_CLIENT_SECRET = config.clientSecret;    
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -59,7 +60,8 @@ app.use(partials());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(session({ secret: 'keyboard cat', resave: false,
+ saveUninitialized: false }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
@@ -70,7 +72,8 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
   //console.log(req.user.access_token);
   //console.log(req.session)
-  res.render(path.resolve(__dirname + '/../app/views/index'), { user: req.user });
+  res.render(path.resolve(__dirname + '/../app/views/index'),
+   { user: req.user });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
@@ -114,7 +117,7 @@ app.get('/logout', function(req, res){
 //   login page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/login');
 }
 
 app.get('/api', function(req,res){
@@ -124,14 +127,20 @@ app.get('/api', function(req,res){
 
 app.use('/app-config', express.static(__dirname + '/../app/app-config'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'));
-app.use('/repo-list', express.static(__dirname + '/../app/components/repo-list'));
-app.use('/activity-chart', express.static(__dirname + '/../app/components/activity-chart'));
-app.use('/pullrequest-list', express.static(__dirname + '/../app/components/pullrequest-list'));
-app.use('/pushevent-list', express.static(__dirname + '/../app/components/pushevent-list'));
-app.use('/profile-chart', express.static(__dirname + '/../app/components/profile-chart'));
-app.use('/language-chart', express.static(__dirname + '/../app/components/language-chart'));
+app.use('/repo-list', express.static(__dirname +
+ '/../app/components/repo-list'));
+app.use('/activity-chart', express.static(__dirname + 
+  '/../app/components/activity-chart'));
+app.use('/pullrequest-list', express.static(__dirname + 
+  '/../app/components/pullrequest-list'));
+app.use('/pushevent-list', express.static(__dirname + 
+  '/../app/components/pushevent-list'));
+app.use('/profile-chart', express.static(__dirname + 
+  '/../app/components/profile-chart'));
+app.use('/language-chart', express.static(__dirname + 
+  '/../app/components/language-chart'));
 
 
 app.listen(3000, function() {
-	console.log("Listening on 3000 port.")
+	console.log("Listening on 3000 port.");
 });

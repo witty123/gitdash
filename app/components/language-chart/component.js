@@ -5,7 +5,8 @@ angular.
   module('languageChart').
   component('languageChart', {
     templateUrl: 'language-chart/template.html',
-    controller: ['$scope', '$http', 'languageSearch', function LanguageChartController($scope, $http, languageSearch) {
+    controller: ['$scope', '$http', 'languageSearch',
+     function LanguageChartController($scope, $http, languageSearch) {
       $scope.repoUrls;
       $scope.reposLoaded;
       $scope.userName;
@@ -90,14 +91,15 @@ angular.
         function(payLoad){
           $scope.userName = payLoad.data.username;
           $scope.access_token = payLoad.data.access_token;
-          var repoDataPromise = languageSearch.getRepo($scope.userName, $scope.access_token);
+          var repoDataPromise = languageSearch.getRepo($scope.userName,
+           $scope.access_token);
           repoDataPromise.then(
             function(payLoad){
               $scope.repoData = payLoad.data;
               $scope.reposLoaded = true;
               for(var repo = 0; repo < payLoad.data.length; repo++)
               {
-                if(payLoad.data[repo].language==null)
+                if(payLoad.data[repo].language===null)
                 {
                   $scope.data[11].y+=1;
                 }
@@ -105,7 +107,7 @@ angular.
                 {
                 for(var lang in $scope.data)
                   {
-                    if($scope.data[lang].key==payLoad.data[repo].language)
+                    if($scope.data[lang].key===payLoad.data[repo].language)
                     {
                       $scope.data[lang].y+=1;
                     }

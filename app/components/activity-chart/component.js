@@ -1,11 +1,13 @@
 'use strict';
 
-// Register `activityChart` component, along with its associated controller and template
+// Register `activityChart` component, along with its associated controller and
+// template
 angular.
   module('activityChart').
   component('activityChart', {
     templateUrl: 'activity-chart/template.html',
-    controller: ['$scope', '$http', 'activitySearch', function ActivityChartController($scope, $http, activitySearch) {
+    controller: ['$scope', '$http', 'activitySearch', 
+    function ActivityChartController($scope, $http, activitySearch) {
     	$scope.options = {
         chart: {
           type: 'pieChart',
@@ -135,14 +137,15 @@ angular.
         function(payLoad){
           $scope.userName = payLoad.data.username;
           $scope.access_token = payLoad.data.access_token;
-          var activityDataPromise = activitySearch.getActivity($scope.userName, $scope.access_token);
+          var activityDataPromise = activitySearch.getActivity($scope.userName,
+           $scope.access_token);
           activityDataPromise.then(
             function(payLoad){
               for(var d = 0; d < payLoad.data.length; d++)
               {
                 for(var i in $scope.data)
               {
-                if($scope.data[i].key==payLoad.data[d].type)
+                if($scope.data[i].key === payLoad.data[d].type)
                 {
                   $scope.data[i].y+=1;
                 }
