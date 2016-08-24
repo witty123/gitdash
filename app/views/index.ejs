@@ -1,5 +1,39 @@
-<% if (!user) { %>
-	<h2>Welcome! Please log in.</h2>
-<% } else { %>
-	<h2>Hello, <%= user.username %>.</h2>
-<% } %>
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <title>Repos</title>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <!-- it's important for d3.js -->
+    <script src="node_modules/d3/d3.js"></script>
+    <script src="node_modules/nvd3/build/nv.d3.js"></script> <!-- or use another assembly -->
+    <script src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
+    <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css">
+    <script src="app-config/app.js"></script>
+    <script src="repo-list/module.js"></script>
+    <script src="repo-list/component.js"></script>
+    <script src="pullrequest-list/module.js"></script>
+    <script src="pullrequest-list/component.js"></script>
+    <script src="pushevent-list/module.js"></script>
+    <script src="pushevent-list/component.js"></script>
+    <script src="profile-chart/module.js"></script>
+    <script src="profile-chart/component.js"></script>
+    <script src="language-chart/module.js"></script>
+    <script src="language-chart/component.js"></script>
+    <script src="activity-chart/module.js"></script>
+    <script src="activity-chart/component.js"></script>
+  </head>
+  <body ng-app="gitdashApp">
+    <% if (!user) { %>
+        <h2>Welcome! Please log in.</h2>
+    <% } else { %>
+        <profile-chart></profile-chart>
+        <repo-list ></repo-list> 
+        <language-chart></language-chart>
+        <activity-chart></activity-chart>
+        <pullrequest-list></pullrequest-list>
+        <pushevent-list></pushevent-list>
+    <% } %>
+  </body>
+</html>
