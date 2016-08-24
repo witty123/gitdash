@@ -73,7 +73,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
   //console.log(req.user.access_token);
   //console.log(req.session)
-  res.render(path.resolve(__dirname + '/../app/index'), { user: req.user });
+  res.render(path.resolve(__dirname + '/../app/views/index'), { user: req.user });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
@@ -123,9 +123,20 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/login')
 }
 
+app.get('/api', function(req,res){
+  res.send(req.user);
+});
 
-app.use('/public', express.static(__dirname + '/../app/public'));
+
+app.use('/app-config', express.static(__dirname + '/../app/app-config'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'));
+app.use('/repo-list', express.static(__dirname + '/app/components/repo-list'));
+app.use('/activity-chart', express.static(__dirname + '/app/components/activity-chart'));
+app.use('/pullrequest-list', express.static(__dirname + '/app/components/pullrequest-list'));
+app.use('/pushevent-list', express.static(__dirname + '/app/components/pushevent-list'));
+app.use('/profile-chart', express.static(__dirname + '/app/components/profile-chart'));
+app.use('/language-chart', express.static(__dirname + '/app/components/language-chart'));
+
 
 app.listen(3000, function() {
 	console.log("Listening on 3000 port.")
