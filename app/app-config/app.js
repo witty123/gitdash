@@ -5,9 +5,8 @@
 angular.module('gitdashApp', [ 
 	'ngRoute',
 	'repoList',
-	'activityChart'
-	// 'languageChart', 
-	// 'activityChart', 
+	'activityChart',
+	'languageChart' 
 	// 'profileChart', 
 	// 'pullrequestList', 
 	// 'pusheventList'
