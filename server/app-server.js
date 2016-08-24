@@ -1,13 +1,10 @@
 var express = require('express');
 var passport = require('passport');
-var util = require('util');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var GitHubStrategy = require('passport-github2').Strategy;
 var partials = require('express-partials');
-var request = require("request");
-var url = require("url");
 var config = require("./config.json")
 var path = require("path")
 
@@ -90,11 +87,8 @@ app.get('/login', function(req, res){
 //   the user to github.com.  After authorization, GitHub will redirect the user
 //   back to this application at /auth/github/callback
 app.get('/auth/github',
-  passport.authenticate('github', { scope: [ 'user' ] }),
-  function(req, res){
-    // The request will be redirected to GitHub for authentication, so this
-    // function will not be called.
-  });
+  passport.authenticate('github', { scope: [ 'user', 'repo:status' ] })
+  );
 
 // GET /auth/github/callback
 //   Use passport.authenticate() as route middleware to authenticate the
