@@ -1,0 +1,15 @@
+<div ng-repeat="pullRequests in closedPullRequests">
+    <div> {{pullRequests.state}} </div>
+    <div> {{pullRequests.title}} </div>
+    <div> {{pullRequests.merged}} </div>
+    <hr>
+</div>
+<hr>
+<hr>
+<!-- <span>{{openPullRequests}}</span> -->
+<div ng-repeat="pullRequests in openPullRequests">
+    <div> {{pullRequests.state}} </div>
+    <div> {{pullRequests.title}} </div>
+    <div> {{pullRequests.merged}} </div>
+    <hr>
+</div>

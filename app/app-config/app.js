@@ -7,7 +7,7 @@ angular.module('gitdashApp', [
 	'repoList',
 	'activityChart',
 	'languageChart',
-	'profileChart' 
-	// 'pullrequestList', 
-	// 'pusheventList'
+	'profileChart', 
+    'pullrequestList', 
+	'pusheventList'
 ]);
