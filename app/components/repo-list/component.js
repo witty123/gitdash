@@ -5,21 +5,25 @@ angular.
   module('repoList').
   component('repoList', {
     templateUrl: 'repo-list/template.html',
-    controller: function RepoListController($scope, $http) {
+    controller: ['$scope', '$http', 'repoSearch', function RepoListController($scope, $http, repoSearch) {
     	$scope.reposLoaded = false;
-
       $scope.userLoaded = false;
+      $scope.userName;
+      $scope.access_token;
+      $scope.repoData;
 
-      $http.get("/api")
-        .success(function ( data ) {
-              $scope.url = "https://api.github.com/users/" + data.username + "/repos?access_token=" + data.access_token;
-              $http.get($scope.url)
-                .success(function (repoUrls){
-                  $scope.repoData = repoUrls;
-                  $scope.reposLoaded = true;
-                });
-            });
-        
+      var userDataPromise = repoSearch.getSearch();
+      userDataPromise.then(
+        function (payLoad) {
+          $scope.userName = payLoad.data.username;
+          $scope.access_token = payLoad.data.access_token;
+          var repoDataPromise = repoSearch.getRepo($scope.userName, $scope.access_token);
+          repoDataPromise.then(
+            function(payLoad){
+              $scope.repoData = payLoad.data;
+              $scope.reposLoaded = true;
+          });
+      });
       $scope.predicate = '-updated_at';
-    }
+    }]
 });

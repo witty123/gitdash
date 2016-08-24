@@ -5,35 +5,40 @@ angular.
   module('pullrequestList').
   component('pullrequestList', {
     templateUrl: 'pullrequest-list/template.html',
-    controller: function PullrequestListController($scope, $http) {
-    	$http.get("/api")
-        .success(function ( user ) {
+    controller: ['$scope', '$http', 'pullrequestSearch', function PullrequestListController($scope, $http, pullrequestSearch) {
           $scope.userLoaded = true;
           $scope.openPullRequests = [];
           $scope.closedPullRequests = [];
-          $scope.url = "https://api.github.com/users/" + user.username +  "/events?page=1&per_page=300&access_token=" + user.access_token;    
-          $http.get($scope.url)
-            .success(function (eventData){
-              for(var d = 0; d < eventData.length; d++)
-                {
-                	if(eventData[d].type == 'PullRequestEvent')
-                  {
-                    $scope.url = eventData[d].payload.pull_request.url + "?access_token" + user.access_token;
-                    $http.get($scope.url)
-                      .success(function (pullRequestData){
-                        if(pullRequestData.state == "closed")
-                        {
-                          $scope.closedPullRequests.push(pullRequestData);
-                        }
-                        else
-                        {
-                          $scope.openPullRequests.push(pullRequestData);
-                        }
-                      });
-                  }
-                }
-                console.log($scope.openPullRequests);
-                });
-        });
-    }
+          $scope.userName;
+          $scope.access_token;
+
+          var userDataPromise = pullrequestSearch.getSearch();
+          userDataPromise.then( 
+            function(payLoad){
+              $scope.userName = payLoad.data.username;
+              $scope.access_token = payLoad.data.access_token;
+              var pullDataPromise = pullrequestSearch.getpullEvent($scope.userName, $scope.access_token);
+              pullDataPromise.then( 
+                function(payLoad){
+                  for(var d = 0; d < payLoad.data.length; d++)
+                    {
+                      if(payLoad.data[d].type == 'PullRequestEvent')
+                      {
+                        var pullRequestDataPromise = pullrequestSearch.confirmpullEvent(payLoad.data[d].payload.pull_request.url, $scope.access_token);
+                        pullRequestDataPromise.then(
+                          function(payLoad){
+                            if(payLoad.data.state == "closed")
+                            {
+                              $scope.closedPullRequests.push(payLoad.data);
+                            }
+                            else
+                            {
+                              $scope.openPullRequests.push(payLoad.data);
+                            }
+                          })
+                      }
+                    }
+              })
+            })
+    }]
 });

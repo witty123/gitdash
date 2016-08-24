@@ -5,7 +5,7 @@ angular.
   module('activityChart').
   component('activityChart', {
     templateUrl: 'activity-chart/template.html',
-    controller: function ActivityChartController($scope, $http) {
+    controller: ['$scope', '$http', 'activitySearch', function ActivityChartController($scope, $http, activitySearch) {
     	$scope.options = {
         chart: {
           type: 'pieChart',
@@ -130,25 +130,25 @@ angular.
         }
       ];
 
-      $http.get("/api")
-      .success(function ( user ) {
-        $scope.username = user.username;
-        $scope.userLoaded = true;
-        $scope.url = "https://api.github.com/users/" + user.username +  "/events?page=1&per_page=300&access_token=" + user.access_token;
-        
-        $http.get($scope.url)
-          .success(function (eventData){
-            for(var d = 0; d < eventData.length; d++)
+      var userDataPromise = activitySearch.getSearch();
+      userDataPromise.then( 
+        function(payLoad){
+          $scope.userName = payLoad.data.username;
+          $scope.access_token = payLoad.data.access_token;
+          var activityDataPromise = activitySearch.getActivity($scope.userName, $scope.access_token);
+          activityDataPromise.then(
+            function(payLoad){
+              for(var d = 0; d < payLoad.data.length; d++)
               {
                 for(var i in $scope.data)
               {
-                if($scope.data[i].key==eventData[d].type)
+                if($scope.data[i].key==payLoad.data[d].type)
                 {
                   $scope.data[i].y+=1;
                 }
               }
               }
-              });
-      });
-    }
+            });
+        });
+    }]
 });

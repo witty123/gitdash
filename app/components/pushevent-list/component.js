@@ -5,22 +5,27 @@ angular.
   module('pusheventList').
   component('pusheventList', {
     templateUrl: 'pushevent-list/template.html',
-    controller: function PusheventListController($scope, $http) {
-    	$http.get("/api")
-        .success(function ( user ) {
-          $scope.userLoaded = true;
-          $scope.pushEvents = [];
-          $scope.url = "https://api.github.com/users/" + user.username +  "/events?page=1&per_page=300&access_token=" + user.access_token;    
-          $http.get($scope.url)
-            .success(function (eventData){
-              for(var d = 0; d < eventData.length; d++)
+    controller: ['$scope', '$http', 'pusheventSearch', function PusheventListController($scope, $http, pusheventSearch) {
+      $scope.pushEvents = [];
+      $scope.userLoaded = true;
+
+      var userDataPromise = pusheventSearch.getSearch();
+      userDataPromise.then( 
+        function(payLoad){
+          $scope.userName = payLoad.data.username;
+          $scope.access_token = payLoad.data.access_token;
+          var pushDataPromise = pusheventSearch.getpushEvent($scope.userName, $scope.access_token);
+          pushDataPromise.then( 
+            function(payLoad){
+
+              for(var d = 0; d < payLoad.data.length; d++)
                 {
-                	if(eventData[d].type == 'PushEvent')
+                  if(payLoad.data[d].type == 'PushEvent')
                   {
-                    $scope.pushEvents.push(eventData[d]);
+                    $scope.pushEvents.push(payLoad.data[d]);
                   }
                 }
-            });
-        });
-    }
+          })
+        })
+    }]
 });

@@ -5,12 +5,12 @@ angular.
   module('profileChart').
   component('profileChart', {
     templateUrl: 'profile-chart/template.html',
-    controller: function ProfileChartController($scope, $http) {
-    	$http.get("/api")
-        .success(function(data) {
-          $scope.url = "https://api.github.com/users/" + data.username + "?access_token=" + data.access_token;
-          $scope.userData = data;  
-          console.log($scope.userData);  	
-        });
-    }
+    controller: ['$scope', '$http', 'profileSearch', function ProfileChartController($scope, $http, profileSearch) {
+      $scope.userData;
+      var userDataPromise = profileSearch.getSearch();
+      userDataPromise.then(
+        function (payLoad) {
+          $scope.userData = payLoad.data;
+      });
+  }]
 })

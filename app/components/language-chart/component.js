@@ -5,10 +5,12 @@ angular.
   module('languageChart').
   component('languageChart', {
     templateUrl: 'language-chart/template.html',
-    controller: function LanguageChartController($scope, $http) {
-      $scope.repoData;
+    controller: ['$scope', '$http', 'languageSearch', function LanguageChartController($scope, $http, languageSearch) {
       $scope.repoUrls;
       $scope.reposLoaded;
+      $scope.userName;
+      $scope.access_token;
+      $scope.repoData;
       $scope.options = {
         chart: {
           type: 'pieChart',
@@ -81,32 +83,36 @@ angular.
             y:0
         }
       ];
-      $http.get("/api")
-      .success(function ( user ) {
-        $scope.user = user;
-        $scope.url = "https://api.github.com/users/" + user.username + "/repos?access_token=" + user.access_token;
-        $http.get($scope.url)
-          .success(function (repositoryData){
-            $scope.repoData = repositoryData;
-            $scope.reposLoaded = true;
-            for(var d = 0; d < repositoryData.length; d++)
-            {
-              if(repositoryData[d].language==null)
+
+
+      var userDataPromise = languageSearch.getSearch();
+      userDataPromise.then( 
+        function(payLoad){
+          $scope.userName = payLoad.data.username;
+          $scope.access_token = payLoad.data.access_token;
+          var repoDataPromise = languageSearch.getRepo($scope.userName, $scope.access_token);
+          repoDataPromise.then(
+            function(payLoad){
+              $scope.repoData = payLoad.data;
+              $scope.reposLoaded = true;
+              for(var repo = 0; repo < payLoad.data.length; repo++)
               {
-                $scope.data[11].y+=1;
-              }
-              else
-              {
-              for(var i in $scope.data)
+                if(payLoad.data[repo].language==null)
                 {
-                  if($scope.data[i].key==repositoryData[d].language)
-                  {
-                    $scope.data[i].y+=1;
-                  }
+                  $scope.data[11].y+=1;
                 }
+                else
+                {
+                for(var lang in $scope.data)
+                  {
+                    if($scope.data[lang].key==payLoad.data[repo].language)
+                    {
+                      $scope.data[lang].y+=1;
+                    }
+                  }
+                } 
               } 
-            } 
           });
-      });
+        });
     }
-});
+]});
