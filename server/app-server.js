@@ -130,12 +130,12 @@ app.get('/api', function(req,res){
 
 app.use('/app-config', express.static(__dirname + '/../app/app-config'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'));
-app.use('/repo-list', express.static(__dirname + '/app/components/repo-list'));
-app.use('/activity-chart', express.static(__dirname + '/app/components/activity-chart'));
-app.use('/pullrequest-list', express.static(__dirname + '/app/components/pullrequest-list'));
-app.use('/pushevent-list', express.static(__dirname + '/app/components/pushevent-list'));
-app.use('/profile-chart', express.static(__dirname + '/app/components/profile-chart'));
-app.use('/language-chart', express.static(__dirname + '/app/components/language-chart'));
+app.use('/repo-list', express.static(__dirname + '/../app/components/repo-list'));
+app.use('/activity-chart', express.static(__dirname + '/../app/components/activity-chart'));
+app.use('/pullrequest-list', express.static(__dirname + '/../app/components/pullrequest-list'));
+app.use('/pushevent-list', express.static(__dirname + '/../app/components/pushevent-list'));
+app.use('/profile-chart', express.static(__dirname + '/../app/components/profile-chart'));
+app.use('/language-chart', express.static(__dirname + '/../app/components/language-chart'));
 
 
 app.listen(3000, function() {
