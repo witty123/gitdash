@@ -8,6 +8,8 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var partials = require('express-partials');
 var config = require("./config.json");
 var path = require("path");
+var app = express();
+
 
 var GITHUB_CLIENT_ID = config.clientID;
 var GITHUB_CLIENT_SECRET = config.clientSecret;    
@@ -51,7 +53,6 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-var app = express();
 
 // configure Express
 app.set('views', path.resolve(__dirname + '/../app/views'));
@@ -66,7 +67,7 @@ app.use(session({ secret: 'keyboard cat', resave: false,
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist'));
 
 
 app.get('/', function(req, res){
@@ -80,18 +81,13 @@ app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
 });
 
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user });
-});
-
-// GET /auth/github
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in GitHub authentication will involve redirecting
 //   the user to github.com.  After authorization, GitHub will redirect the user
 //   back to this application at /auth/github/callback
-app.get('/auth/github',
-  passport.authenticate('github', { scope: [ 'user', 'repo:status' ] })
-  );
+app.get('/login', 
+  passport.authenticate('github', { scope: [ 'user', 'repo:status' ] }));
+
 
 // GET /auth/github/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -105,8 +101,9 @@ app.get('/callback',
   });
 
 app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+  req.session.destroy(function (err) {
+    res.redirect('/'); //Inside a callback… bulletproof!
+  });
 });
 
 
@@ -124,7 +121,7 @@ app.get('/api', function(req,res){
   res.send(req.user);
 });
 
-
+app.use('/dist', express.static(__dirname + '/../dist'));
 app.use('/app-config', express.static(__dirname + '/../app/app-config'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'));
 app.use('/repo-list', express.static(__dirname +
