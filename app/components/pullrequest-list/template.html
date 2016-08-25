@@ -1,15 +1,53 @@
-<div ng-repeat="pullRequests in closedPullRequests">
-    <div> {{pullRequests.state}} </div>
-    <div> {{pullRequests.title}} </div>
-    <div> {{pullRequests.merged}} </div>
-    <hr>
+
+<div class="panel">
+	<div class="panel-heading">
+	        <span class="small-box">
+	            <h4>Your recent Pull Requests: </h4>
+	            <div ng-init="show=1">
+	            <button class="button" ng-click="show = 1"> Closed </button>
+	            <button class="button" ng-click="show = 2"> Open </button>
+	            </div>
+	        </span>
+	</div>
+
+	<div class="panel-body">
+	    <div class="list-group">
+	        <div ng-show="show == 1" ng-repeat="pullRequests in closedPullRequests" class="list-group-item ">
+	            <div class="row">
+	                <div>
+	                    <h4>
+	                        <small>
+	                            <span class="icon">
+	                            <span class="mega-octicon octicon-git-pull-request"></span>
+	                            </span>
+	                        </small>
+	                        <small>{{pullRequests.user.login}}</small>
+	                        <div> {{pullRequests.state}} </div>
+   							<div> {{pullRequests.title}} </div>
+  						    <div> {{pullRequests.merged}} </div>
+	                    </h4>
+	                </div>
+	            </div>
+	        </div>
+	        <div ng-show="show == 2" ng-repeat="pullRequests in openPullRequests" class="list-group-item ">
+	            <div class="row">
+	                <div>
+	                    <h4>
+	                        <small>
+	                            <span class="icon">
+	                            <span class="mega-octicon octicon-git-pull-request"></span>
+	                            </span>
+	                        </small>
+	                        <small>{{pullRequests.user.login}}</small>
+	                        <div> {{pullRequests.state}} </div>
+   							<div> {{pullRequests.title}} </div>
+  						    <div> {{pullRequests.merged}} </div>
+	                    </h4>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    </div>
+	</div>
 </div>
-<hr>
-<hr>
-<!-- <span>{{openPullRequests}}</span> -->
-<div ng-repeat="pullRequests in openPullRequests">
-    <div> {{pullRequests.state}} </div>
-    <div> {{pullRequests.title}} </div>
-    <div> {{pullRequests.merged}} </div>
-    <hr>
-</div>
+

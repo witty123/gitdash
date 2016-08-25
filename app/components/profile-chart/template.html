@@ -1,4 +1,13 @@
-<span> {{userData.username}} </span>
-<img ng-src="{{userData._json.avatar_url}}">
-<span>followers: {{userData._json.followers}} </span>
-<span>following: {{userData._json.following}} </span>
+<div class="panel">
+    <div>
+    <span class = "small-box">Your profile</span>
+    <img ng-src="{{userData._json.avatar_url}}">
+    </div>
+	<div>
+	    <div class="panel-heading">
+			<span class = "small-box">User: {{userData.username}} </span>
+			<span class = "small-box" >Followers: {{userData._json.followers}} </span>
+			<span class= "small-box" >Following: {{userData._json.following}} </span>
+		</div>
+	</div>
+</div>

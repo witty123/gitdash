@@ -1,1 +1,33 @@
-<span>{{ pushEvents }}</span>
+<div class="panel">
+	<div class="panel-heading">
+	    <form >
+	        <span class="small-box">
+	            <h4>Your recent Push events: </h4>
+	        </span>
+	    </form>
+	</div>
+
+	<div class="panel-body">
+	    <div class="list-group">
+	        <div ng-repeat="event in pushEvents" class="list-group-item ">
+	            <div class="row">
+	                <div>
+	                    <h4>
+	                        <small>
+	                            <span class="icon">
+	                            <span class="mega-octicon octicon-repo-push"></span>
+	                            </span>
+	                        </small>
+	                        <small>{{event.actor.login}}</small>
+	                        <img ng-src= "{{event.actor.avatar_url}}">
+	                        <small>{{event.repo.name}}</small>
+	                        <small>{{event.payload.commits[0].url}}</small>
+	                        <small>{{event.payload.commits[0].message}}</small>
+	                    </h4>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	</div>
+</div>

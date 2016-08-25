@@ -11,20 +11,21 @@ angular.
     	$scope.options = {
         chart: {
           type: 'pieChart',
-          height: 450,
+          height: 490,
+          width: 360,
           donut: true,
-          labelSunbeamLayout: true,
-          x: function(d){return d.key;},
-          y: function(d){return d.y;},
-          showLabels: true,
+          labelSunbeamLayout: false,
+          x: function(d){return d.key; },
+          y: function(d){return d.y; },
+          showLabels: false,
           duration: 500,
           legend: {
-              margin: {
-                  top: 5,
-                  right: 70,
-                  bottom: 5,
-                  left: 0
-              }
+            margin: {
+              top: 5,
+              right: 0,
+              bottom: 5,
+              left: 0
+            }
           }
         }
       };
@@ -47,23 +48,11 @@ angular.
           y: 0
         },
         {
-          key: "CreateEvent",
-          y: 0
-        },
-        {
           key: "CommitCommentEvent",
           y: 0
         },
         {
           key: "DeleteEvent",
-          y: 0
-        },
-        {
-          key: "DeploymentEvent",
-          y: 0
-        },
-        {
-          key: "DeploymentStatusEvent",
           y: 0
         },
         {
@@ -75,15 +64,7 @@ angular.
           y: 0
         },
         {
-          key: "ForkApplyEvent",
-          y: 0
-        },
-        {
           key: "GistEvent",
-          y: 0
-        },
-        {
-          key: "GollumEvent",
           y: 0
         },
         {
@@ -95,14 +76,6 @@ angular.
           y: 0
         },
         {
-          key: "MembershipEvent",
-          y: 0
-        },
-        {
-          key: "PageBuildEvent",
-          y: 0
-        },
-        {
           key: "PublicEvent",
           y: 0
         },
@@ -111,15 +84,7 @@ angular.
           y: 0
         },
         {
-          key: "ReleaseEvent",
-          y: 0
-        },
-        {
           key: "RepositoryEvent",
-          y: 0
-        },
-        {
-          key: "StatusEvent",
           y: 0
         },
         {
@@ -128,6 +93,10 @@ angular.
         },
         {
           key: "WatchEvent",
+          y: 0
+        },
+        {
+          key: "Other events",
           y: 0
         }
       ];
@@ -143,13 +112,20 @@ angular.
             function(payLoad){
               for(var d = 0; d < payLoad.data.length; d++)
               {
+                var flag=0;
                 for(var i in $scope.data)
-              {
-                if($scope.data[i].key === payLoad.data[d].type)
                 {
-                  $scope.data[i].y+=1;
+                  if($scope.data[i].key === payLoad.data[d].type)
+                  {
+                    $scope.data[i].y+=1;
+                    flag=1;
+                  }
                 }
-              }
+                if(flag===0)
+                {
+                  $scope.data[16].y+=1;
+                }
+
               }
             });
         });

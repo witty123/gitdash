@@ -1,0 +1,8 @@
+.search-box {
+	@include size(98%,10%);
+	positon: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	@include font(20px);
+	cursor: pointer;
+}

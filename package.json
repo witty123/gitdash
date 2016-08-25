@@ -5,7 +5,7 @@
   "main": "app-server.js",
   "scripts": {
     "start": "node app-server.js",
-    "build-css": "node-sass --include-path scss ./app/public/styles.scss   ./dist/css/styles.css",
+    "build-css": "node-sass --include-path scss ./app/public/css/styles.scss   ./dist/css/styles.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "author": "",
@@ -23,6 +23,7 @@
     "http-server": "^0.9.0",
     "method-override": "^2.3.5",
     "node-sass": "^3.8.0",
+    "octicons": "^4.3.0",
     "octonode": "^0.7.6",
     "passport": "0.2.2",
     "passport-github2": ">= 0.0.0",

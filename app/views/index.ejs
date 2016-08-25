@@ -9,7 +9,9 @@
     <script src="node_modules/d3/d3.js"></script>
     <script src="node_modules/nvd3/build/nv.d3.js"></script> <!-- or use another assembly -->
     <script src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
+    <!-- <link rel="stylesheet" href="node_modules/octicons/build/font/octicons.css"> -->
     <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css">
+    <link rel="stylesheet" href="dist/css/styles.css">
     <script src="app-config/app.js"></script>
     <script src="repo-list/module.js"></script>
     <script src="repo-list/service.js"></script>
@@ -30,16 +32,20 @@
     <script src="activity-chart/service.js"></script>    
     <script src="activity-chart/component.js"></script>
   </head>
-  <body ng-app="gitdashApp">
+  <body ng-app="gitdashApp" class = "container">
+  <div class="container">
     <% if (!user) { %>
+        <div class="jumbotron container">
         <h2>Welcome! Please log in.</h2>
+        </div>
     <% } else { %>
         <profile-chart></profile-chart>
-        <repo-list ></repo-list> 
         <language-chart></language-chart>
+        <repo-list ></repo-list> 
         <activity-chart></activity-chart>
-        <pullrequest-list></pullrequest-list>
         <pushevent-list></pushevent-list>
+        <pullrequest-list></pullrequest-list>
     <% } %>
+    </div>
   </body>
 </html>

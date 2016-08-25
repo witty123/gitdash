@@ -1,0 +1,5 @@
+a {
+	text-decoration: none;
+	@include font(90%);
+	color: $tab-font-color;
+}

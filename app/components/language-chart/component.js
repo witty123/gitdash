@@ -7,25 +7,26 @@ angular.
     templateUrl: 'language-chart/template.html',
     controller: ['$scope', '$http', 'languageSearch',
      function LanguageChartController($scope, $http, languageSearch) {
-      $scope.repoUrls;
-      $scope.reposLoaded;
-      $scope.userName;
-      $scope.access_token;
-      $scope.repoData;
+      $scope.repoUrls = {};
+      $scope.reposLoaded = {};
+      $scope.userName = {};
+      $scope.access_token = {};
+      $scope.repoData = {};
       $scope.options = {
         chart: {
           type: 'pieChart',
-          height: 500,
+          height: 490,
+          width:360,
           x: function(d){return d.key;},
           y: function(d){return d.y;},
-          showLabels: true,
+          showLabels: false,
           duration: 500,
           labelThreshold: 0.01,
-          labelSunbeamLayout: true,
+          labelSunbeamLayout: false,
           legend: {
             margin: {
               top: 5,
-              right: 35,
+              right: 0,
               bottom: 5,
               left: 0
             }
@@ -47,7 +48,7 @@ angular.
             y: 0
         },
         {
-            key: "Javascript",
+            key: "JavaScript",
             y: 0
         },
         {

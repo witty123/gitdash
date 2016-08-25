@@ -1,0 +1,13 @@
+.small-box {
+	background-color: lighten($tab-color,10%);
+    color: $tab-font-color,10%;
+    @include border_style(0px, 1px, $tab-font-color);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    @include font(16px);
+    margin: 4px 2px;
+    cursor: pointer;
+    @include horizontal-align();
+}

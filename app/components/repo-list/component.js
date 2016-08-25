@@ -11,7 +11,7 @@ angular.
       $scope.userLoaded = false;
       $scope.userName = {};
       $scope.access_token = {};
-      $scope.repoData = {};
+      $scope.repoData = [];
 
       var userDataPromise = repoSearch.getSearch();
       userDataPromise.then(
