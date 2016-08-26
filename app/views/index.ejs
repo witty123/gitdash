@@ -33,12 +33,13 @@
     <script src="activity-chart/component.js"></script>
   </head>
   <body ng-app="gitdashApp" class = "container">
-  <div class="container">
+  <div class>
     <% if (!user) { %>
+    <div class="jumbotron container-fluid">
         <h2>Welcome to GitDash! GitDash was created as a project to be submitted in JediSchool at Practo. 
         <br>
         It's an application through which you can visualise your Github profile.</h2>
-        </div>
+    </div>
     <% } else { %>
         <profile-chart></profile-chart>
         <language-chart></language-chart> 

@@ -5,9 +5,11 @@
 	</head>
 	<body class = "container">
 		<% if (!user) { %>
+			<div class="container jumbotron">
 			<p >
 			<a href="/login" class="button">Log In</a>
 			</p>
+			</div>
 		<% } else { %>
 			<p>
 			<div class="container">
