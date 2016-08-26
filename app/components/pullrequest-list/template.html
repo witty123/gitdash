@@ -3,16 +3,16 @@
 	<div class="panel-heading">
 	        <span class="small-box">
 	            <h4>Your recent Pull Requests: </h4>
-	            <div ng-init="show=1">
-	            <button class="button" ng-click="show = 1"> Closed </button>
-	            <button class="button" ng-click="show = 2"> Open </button>
+	            <div ng-init="pullRequest = 1">
+	            <button class="button" ng-click="pullRequest = 1"> Closed </button>
+	            <button class="button" ng-click="pullRequest = 2"> Open </button>
 	            </div>
 	        </span>
 	</div>
 
 	<div class="panel-body">
 	    <div class="list-group">
-	        <div ng-show="show == 1" ng-repeat="pullRequests in closedPullRequests" class="list-group-item ">
+	        <div ng-show="pullRequest == 1" ng-repeat="pullRequests in closedPullRequests" class="list-group-item ">
 	            <div class="row">
 	                <div>
 	                    <h4>
@@ -22,7 +22,7 @@
 	                            </span>
 	                        </small>
 	                        <small class="icon"> Title: {{pullRequests.title}} </small>
-   							<small class="icon"> Repo: {{pullRequests.repo.full_name}} </small>
+   							<small class="icon"> Repo: {{pullRequests.head.repo.full_name}} </small>
 	                        <small class="icon"> State: {{pullRequests.state}} </small>
   						    <small class="icon"> Merged: {{pullRequests.merged}} </small>
   						    <small class="icon"> Created at: {{pullRequests.created_at | date : short : timezone}} </small>
@@ -31,7 +31,7 @@
 	                </div>
 	            </div>
 	        </div>
-	        <div ng-show="show == 2" ng-repeat="pullRequests in openPullRequests" class="list-group-item ">
+	        <div ng-show="pullRequest == 2" ng-repeat="pullRequests in openPullRequests" class="list-group-item ">
 	            <div class="row">
 	                <div>
 	                    <h4>
@@ -41,7 +41,7 @@
 	                            </span>
 	                        </small>
 	                        <small class="icon"> Title: {{pullRequests.title}} </small>
-   							<small class="icon"> Repo: {{pullRequests.repo.full_name}} </small>
+   							<small class="icon"> Repo: {{pullRequests.head.repo.full_name}} </small>
 	                        <small class="icon"> State: {{pullRequests.state}} </small>
 	                        <small class="icon"> Created at: {{pullRequests.created_at | date : short : timezone}} </small>
 	                    </h4>

@@ -86,7 +86,7 @@ app.get('/account', ensureAuthenticated, function(req, res){
 //   the user to github.com.  After authorization, GitHub will redirect the user
 //   back to this application at /auth/github/callback
 app.get('/login', 
-  passport.authenticate('github', { scope: [ 'user', 'repo:status' ] }));
+  passport.authenticate('github', { scope: [ 'user', 'repo', 'read:org' ] }));
 
 
 // GET /auth/github/callback

@@ -89,18 +89,18 @@ angular.
 
       var userDataPromise = languageSearch.getSearch();
       userDataPromise.then( 
-        function(payLoad){
-          $scope.userName = payLoad.data.username;
-          $scope.access_token = payLoad.data.access_token;
+        function(expressData){
+          $scope.userName = expressData.data.username;
+          $scope.access_token = expressData.data.access_token;
           var repoDataPromise = languageSearch.getRepo($scope.userName,
            $scope.access_token);
           repoDataPromise.then(
-            function(payLoad){
-              $scope.repoData = payLoad.data;
+            function(repos){
+              $scope.repoData = repos.data;
               $scope.reposLoaded = true;
-              for(var repo = 0; repo < payLoad.data.length; repo++)
+              for(var repo = 0; repo < repos.data.length; repo++)
               {
-                if(payLoad.data[repo].language===null)
+                if(repos.data[repo].language===null)
                 {
                   $scope.data[11].y+=1;
                 }
@@ -108,7 +108,7 @@ angular.
                 {
                 for(var lang in $scope.data)
                   {
-                    if($scope.data[lang].key===payLoad.data[repo].language)
+                    if($scope.data[lang].key===repos.data[repo].language)
                     {
                       $scope.data[lang].y+=1;
                     }
