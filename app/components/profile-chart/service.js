@@ -3,9 +3,9 @@
 angular.
   module('profileChart').
   service('profileSearch', ['$http', function($http){
-	return {
+    return {
     getSearch: function () {
-	    return ($http.get("/api"));
-	  }
-	};
+        return ($http.get("/api"));
+      }
+    };
   }]);

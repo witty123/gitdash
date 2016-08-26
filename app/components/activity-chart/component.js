@@ -8,7 +8,7 @@ angular.
     templateUrl: 'activity-chart/template.html',
     controller: ['$scope', '$http', 'activitySearch', 
     function ActivityChartController($scope, $http, activitySearch) {
-    	$scope.options = {
+      $scope.options = {
         chart: {
           type: 'pieChart',
           height: 490,
