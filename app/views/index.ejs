@@ -35,14 +35,15 @@
   <body ng-app="gitdashApp" class = "container">
   <div class="container">
     <% if (!user) { %>
-        <div class="jumbotron container">
-        <h2>Welcome! Please log in.</h2>
+        <h2>Welcome to GitDash! GitDash was created as a project to be submitted in JediSchool at Practo. 
+        <br>
+        It's an application through which you can visualise your Github profile.</h2>
         </div>
     <% } else { %>
         <profile-chart></profile-chart>
-        <language-chart></language-chart>
-        <repo-list ></repo-list> 
+        <language-chart></language-chart> 
         <activity-chart></activity-chart>
+        <repo-list ></repo-list>
         <pushevent-list></pushevent-list>
         <pullrequest-list></pullrequest-list>
     <% } %>

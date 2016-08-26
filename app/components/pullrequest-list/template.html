@@ -21,10 +21,12 @@
 	                            <span class="mega-octicon octicon-git-pull-request"></span>
 	                            </span>
 	                        </small>
-	                        <small>{{pullRequests.user.login}}</small>
-	                        <div> {{pullRequests.state}} </div>
-   							<div> {{pullRequests.title}} </div>
-  						    <div> {{pullRequests.merged}} </div>
+	                        <small class="icon"> Title: {{pullRequests.title}} </small>
+   							<small class="icon"> Repo: {{pullRequests.repo.full_name}} </small>
+	                        <small class="icon"> State: {{pullRequests.state}} </small>
+  						    <small class="icon"> Merged: {{pullRequests.merged}} </small>
+  						    <small class="icon"> Created at: {{pullRequests.created_at | date : short : timezone}} </small>
+  						    <small class="icon"> Closed at: {{pullRequests.closed_at | date : short : timezone}} </small>
 	                    </h4>
 	                </div>
 	            </div>
@@ -38,10 +40,10 @@
 	                            <span class="mega-octicon octicon-git-pull-request"></span>
 	                            </span>
 	                        </small>
-	                        <small>{{pullRequests.user.login}}</small>
-	                        <div> {{pullRequests.state}} </div>
-   							<div> {{pullRequests.title}} </div>
-  						    <div> {{pullRequests.merged}} </div>
+	                        <small class="icon"> Title: {{pullRequests.title}} </small>
+   							<small class="icon"> Repo: {{pullRequests.repo.full_name}} </small>
+	                        <small class="icon"> State: {{pullRequests.state}} </small>
+	                        <small class="icon"> Created at: {{pullRequests.created_at | date : short : timezone}} </small>
 	                    </h4>
 	                </div>
 	            </div>

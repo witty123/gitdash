@@ -1,22 +1,29 @@
 .panel {
     display: inline-block;
-    background-color: $background-color;
+    background-color: $panel-color;
     // min-width: 370px;
     // max-width: 370px;
-    width : 360px;
+    width : 380px;
     height: 550px;
-    margin: 10px;
-    @include border_style(5px, 3px, $tab-color);
+    // margin: 10px;
+    @include border_style(5px, 1px, $border-color);
     overflow: auto;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
             box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     .panel-body {
         padding: 15px;
+        overflow: auto;
     }
     .panel-heading {
-      padding: 10px 15px;
       border-bottom: 1px solid transparent;
       border-top-left-radius: 3px;
       border-top-right-radius: 3px;
+      //position: fixed;
+      width: 380px;
+      z-index: 1;
+    }
+    .panel-center {
+        text-align: center;
+        height: 30px !important;
     }
 }

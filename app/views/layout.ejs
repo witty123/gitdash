@@ -5,17 +5,12 @@
 	</head>
 	<body class = "container">
 		<% if (!user) { %>
-			<div class="jumbotron container"> 
-			<p>
-			<a href="/">Home</a> | 
-			<a href="/login">Log In</a>
+			<p >
+			<a href="/login" class="button">Log In</a>
 			</p>
-			</div>
 		<% } else { %>
 			<p>
-			<div class="container ">
-			<a href="/" class="button">Home</a>  
-			<a href="/account" class="button">Account</a>  
+			<div class="container">
 			<a href="/logout" class="button">Log Out</a>
 			</div>
 			</p>

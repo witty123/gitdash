@@ -23,15 +23,13 @@
                                         <a href="{{repo.html_url}}" target="_blank" class = "small-box" >
                                             {{repo.name}}
                                         </a>
-                                        <small>{{repo.description}}</small>
                                     </h4>
                                 </div>
                                 <div>
-                                
                                       <h4>
-                                      <small>Last Updated: {{repo.updated_at | date : short : timezone}}</small>
-                                      <br>
-                                      <small>Created: {{repo.created_at| date : short : timezone}}</small>
+                                      <small class="icon">{{repo.description}}</small>
+                                      <small class="icon">Last Updated: {{repo.updated_at | date : short : timezone}}</small>
+                                      <small class="icon">Created: {{repo.created_at| date : short : timezone}}</small>
                                       </h4>
                                     
                                 </div>

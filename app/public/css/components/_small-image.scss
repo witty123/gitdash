@@ -1,0 +1,9 @@
+ .sml-img{  
+   @include size(48px);
+   @include border_style(48px, 1px, $border-color);
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   display: block;
+}

@@ -1,9 +1,0 @@
-img {
-   @include size(300px);
-   @include border_style(300px, 2px, $tab-color);
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 1px;
-   margin-bottom: 1px;
-   display: block;
-}

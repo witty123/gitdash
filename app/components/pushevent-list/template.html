@@ -18,11 +18,10 @@
 	                            <span class="mega-octicon octicon-repo-push"></span>
 	                            </span>
 	                        </small>
-	                        <small>{{event.actor.login}}</small>
-	                        <img ng-src= "{{event.actor.avatar_url}}">
-	                        <small>{{event.repo.name}}</small>
-	                        <small>{{event.payload.commits[0].url}}</small>
-	                        <small>{{event.payload.commits[0].message}}</small>
+	                        <img class="sml-img" ng-src= "{{event.actor.avatar_url}}">
+	                        <small class="icon">{{event.actor.login}}</small>
+	                        <small class="icon" >Repo: {{event.repo.name}}</small>
+	                        <small class="icon">Message: {{event.payload.commits[0].message}}</small>
 	                    </h4>
 	                </div>
 	            </div>
