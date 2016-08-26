@@ -5,5 +5,4 @@ before_script:
   - npm install -g gulp
   - npm install -g karma
   - npm install
-  - gulp
   
