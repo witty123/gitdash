@@ -1,0 +1,41 @@
+<div class="panel">
+                <div class="panel-heading">
+                    <form >
+                        <span class="small-box">
+                            <h4>Your total repositories:  <span >{{repoData.length}}</span></h4>
+                            <input class="search-box" ng-model="searchText" placeholder="Find a repo...">
+                        </span>
+                    </form>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                            <div class="row">
+                                <div>
+                                    <h4>
+                                        <small>
+                                            <span class="icon">
+                                            <span ng-if="repo.fork" class="mega-octicon octicon-repo-forked"></span>
+                                            <span ng-if="!repo.fork" class="mega-octicon octicon-repo">
+                                            </span>
+                                            </span>
+                                        </small>
+                                        <a href="{{repo.html_url}}" target="_blank" class = "small-box" >
+                                            {{repo.name}}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div>
+                                      <h4>
+                                      <small class="icon">{{repo.description}}</small>
+                                      <small class="icon">Last Updated: {{repo.updated_at | date : short : timezone}}</small>
+                                      <small class="icon">Created: {{repo.created_at| date : short : timezone}}</small>
+                                      </h4>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+</div>

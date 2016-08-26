@@ -1,0 +1,15 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  height: 100%;
+  @include breakpoint(medium){
+    width: 970px;
+  };
+  @include breakpoint(small){
+   width: 750px;
+  };
+  @include breakpoint(large){
+   width: 1170px;
+  };
+  background-color: $background-color;
+}

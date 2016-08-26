@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <title>Repos</title>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <!-- it's important for d3.js -->
+    <script src="node_modules/d3/d3.js"></script>
+    <script src="node_modules/nvd3/build/nv.d3.js"></script> <!-- or use another assembly -->
+    <script src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
+    <!-- <link rel="stylesheet" href="node_modules/octicons/build/font/octicons.css"> -->
+    <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css">
+    <link rel="stylesheet" href="dist/css/styles.css">
+    <script src="app-config/app.js"></script>
+    <script src="repo-list/module.js"></script>
+    <script src="repo-list/service.js"></script>
+    <script src="repo-list/component.js"></script>
+    <script src="pullrequest-list/module.js"></script>
+    <script src="pullrequest-list/service.js"></script>
+    <script src="pullrequest-list/component.js"></script>
+    <script src="pushevent-list/module.js"></script>
+    <script src="pushevent-list/service.js"></script>
+    <script src="pushevent-list/component.js"></script>
+    <script src="profile-chart/module.js"></script>
+    <script src="profile-chart/service.js"></script>
+    <script src="profile-chart/component.js"></script>
+    <script src="language-chart/module.js"></script>
+    <script src="language-chart/service.js"></script>
+    <script src="language-chart/component.js"></script>
+    <script src="activity-chart/module.js"></script>
+    <script src="activity-chart/service.js"></script>    
+    <script src="activity-chart/component.js"></script>
+  </head>
+  <body ng-app="gitdashApp" class = "container">
+  <div class>
+    <% if (!user) { %>
+    <div class="jumbotron container-fluid">
+        <h2>Welcome to GitDash! GitDash was created as a project to be submitted in JediSchool at Practo.</h2> 
+        <br>
+        <h2>It's an application through which you can visualise your Github profile.</h2>
+    </div>
+    <% } else { %>
+        <profile-chart></profile-chart>
+        <language-chart></language-chart> 
+        <activity-chart></activity-chart>
+        <repo-list ></repo-list>
+        <pushevent-list></pushevent-list>
+        <pullrequest-list></pullrequest-list>
+    <% } %>
+    </div>
+  </body>
+</html>

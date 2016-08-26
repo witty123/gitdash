@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Welcome to your GitDash</title>
+	</head>
+	<body class = "container">
+		<% if (!user) { %>
+			<div class="container jumbotron">
+			<p >
+			<a href="/login" class="button">Log In</a>
+			</p>
+			</div>
+		<% } else { %>
+			<p>
+			<div class="container">
+			<a href="/logout" class="button">Log Out</a>
+			</div>
+			</p>
+		<% } %>
+		<%- body %>
+	</body>
+</html>
+
