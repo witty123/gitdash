@@ -2,6 +2,9 @@
 engines:
   duplication:
     enabled: true
+    checks:
+      Similar code:
+        enabled: false
     config:
       languages:
       - ruby
@@ -10,6 +13,9 @@ engines:
       - php
   eslint:
     enabled: true
+    checks:
+      no-undef:
+        enabled: false
   fixme:
     enabled: true
 ratings:
