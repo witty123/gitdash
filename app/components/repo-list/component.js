@@ -7,7 +7,7 @@ angular.
     templateUrl: 'repo-list/template.html',
     controller: ['$scope', '$http', 'repoSearch', 
     function RepoListController($scope, $http, repoSearch) {
-    	$scope.reposLoaded = false;
+      $scope.reposLoaded = false;
       $scope.userLoaded = false;
       $scope.userName = {};
       $scope.access_token = {};
