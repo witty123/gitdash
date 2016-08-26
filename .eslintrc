@@ -1,4 +1,4 @@
-ecmaFeatures:
+fecmaFeatures:
   modules: true
   jsx: true
 
