@@ -12,22 +12,22 @@ This project is an application for analysing your activity on github. Project wi
   - AngularJS v1 - HTML enhanced for User Interfaces
   - Node.js v6.3.1 (Latest) - evented I/O for the backend
 
-## Getting Started
-
-To get you started you can simply clone the repository and install the dependencies:
-
 ## Setting up the environment
 
 ### Setting up NPM
   - For Linux
 
-    ```bash
+   ```bash
       sudo apt-get install npm
+      sudp apt-get install node
+      sudo apt-get install nodejs-legacy
+
     ```
   - For Mac
 
   ```bash
-    brew install npm
+     brew install npm
+     brew install node
   ```
 ### Cloning the repository
 
@@ -48,8 +48,11 @@ cd gitdash
 * We get the tools we depend upon via `npm`, the [node package manager][npm].
 
 ```
-npm install 
+npm install
+gulp 
 ```
+
+### Change config.json to add your clientID and clientSecret
 
 ### Run the Application
 
@@ -67,6 +70,25 @@ Now browse to the app at `http://localhost:3000/`.
 ## Directory Layout
 
 ```
+├── README.md
+├── app
+│   ├── app-config
+│   ├── components
+│   ├── public
+│   ├── routes
+│   └── views
+├── dist
+│   ├── css
+│   ├── img
+│   └── js
+├── gulpfile.js
+├── node_modules
+├── package.json
+├── server
+│   ├── app-server.js
+│   ├── config-sample.json
+│   └── config.json
+└── tests
 
 ```
 
@@ -74,6 +96,17 @@ Now browse to the app at `http://localhost:3000/`.
 
 There are two kinds of tests in the gitdash application: Unit tests and end-to-end tests.
 
+
 ### Running Unit Tests
 
+
+You can perform unit testing by using the command.
+
+```
+karma start
+```
+
+### Running e2e Tests
+
+We are in process of writing e2e tests.
 
