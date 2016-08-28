@@ -126,6 +126,8 @@ app.use('/app-config', express.static(__dirname + '/../app/app-config'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'));
 app.use('/repo-list', express.static(__dirname +
  '/../app/components/repo-list'));
+app.use('/activity-graph', express.static(__dirname + 
+  '/../app/components/activity-graph'));
 app.use('/activity-chart', express.static(__dirname + 
   '/../app/components/activity-chart'));
 app.use('/pullrequest-list', express.static(__dirname + 
