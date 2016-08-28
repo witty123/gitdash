@@ -1,6 +1,15 @@
 'use strict';
 
-// Register `languagechart` component, along with its associated controller and template
+// Register `languagechart` component, along with its associated controller and 
+// template
+
+/**
+* Inject $scope, $http and languageSearch custom service in the controller
+* LanguageChartController
+* languageSearch service updates $scope.data array which is used for updating
+* the activity chart. 
+**/
+
 angular.
   module('languageChart').
   component('languageChart', {

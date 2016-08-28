@@ -2,6 +2,15 @@
 
 // Register `activityGraph` component, along with its associated controller and
 // template
+
+
+/**
+* Inject $scope, $http and activitiesSearch custom service in the controller
+* ActivityGraphController
+* activitiesSearch service updates $scope.data array which is used for updating
+* the activity graph. 
+**/
+
 angular.
   module('activityGraph').
   component('activityGraph', {

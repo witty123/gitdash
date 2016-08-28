@@ -1,4 +1,4 @@
 'use strict';
 
-// Define the `repoList` module
+// Define the `pusheventList` module
 angular.module('pusheventList', []);

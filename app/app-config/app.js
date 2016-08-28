@@ -1,6 +1,7 @@
 'use strict';
 
-// Define the `gitdashApp` module
+// Define the `gitdashApp` module which depends on the other modules which are
+// defined in components
 
 angular.module('gitdashApp', [ 
 	'ngRoute',
