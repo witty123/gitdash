@@ -163,7 +163,6 @@ angular.
             }
 
         ];
-      console.log("kya hai");
       var userDataPromise = activitiesSearch.getSearch();
       userDataPromise.then( 
         function(payLoad){
@@ -193,7 +192,6 @@ angular.
                   }
                 }
               }
-              console.log($scope.data);
             });
         });
     }]
