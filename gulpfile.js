@@ -24,7 +24,10 @@ var jsSource = [
  'app/components/language-chart/component.js',
  'app/components/activity-chart/module.js',
  'app/components/activity-chart/service.js',
- 'app/components/activity-chart/component.js'
+ 'app/components/activity-chart/component.js',
+ 'app/components/activity-graph/module.js',
+ 'app/components/activity-graph/service.js',
+ 'app/components/activity-graph/component.js',
   ],
     sassSource = 'app/public/css/styles.scss',
     outputDircss = 'dist/css',

@@ -9,5 +9,6 @@ angular.module('gitdashApp', [
 	'languageChart',
 	'profileChart', 
     'pullrequestList', 
-	'pusheventList'
+	'pusheventList',
+	'activityGraph'
 ]);
