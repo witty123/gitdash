@@ -1,6 +1,16 @@
 'use strict';
 
-// Register `pusheventList` component, along with its associated controller and template
+// Register `pusheventList` component, along with its associated controller and 
+// template
+
+/**
+* Inject $scope, $http and pusheventSearch custom service in the controller
+* PusheventListController
+* pusheventSearch service updates $scope.pushEvents array which is used for 
+* updating the push events list panel. 
+**/
+
+
 angular.
   module('pusheventList').
   component('pusheventList', {

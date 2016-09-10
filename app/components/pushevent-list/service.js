@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+* pusheventSearch 
+* Inject $http as a dependancy in pusheventSearch service 
+* This service returns two methods:
+* getpushEvent : returns events of a user in JSON format which contains different
+* types of events (including push events)
+* getSearch : returns user access token from express
+**/
+
 angular.
   module('pusheventList').
   service('pusheventSearch', ['$http', function($http){

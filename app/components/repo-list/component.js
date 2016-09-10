@@ -1,6 +1,15 @@
 'use strict';
 
-// Register `repoList` component, along with its associated controller and template
+// Register `repoList` component, along with its associated controller and 
+// template
+
+/**
+* Inject $scope, $http and repoSearch custom service in the controller
+* RepoListController
+* repoSearch service updates $scope.repoData array which is used for 
+* updating the repo list panel. 
+**/
+
 angular.
   module('repoList').
   component('repoList', {

@@ -1,5 +1,17 @@
 'use strict';
 
+/**
+* pullrequestSearch 
+* Inject $http as a dependancy in activitySearch service 
+* This service returns two methods:
+* getpullEvent : returns events of a user in JSON format which contains different
+* types of events (including pullrequest events)
+* confirmpullEvent : returns JSON data which contains the information about
+* particular pull request
+* getSearch : returns user access token from express
+**/
+
+
 angular.
   module('pullrequestList').
   service('pullrequestSearch', ['$http', function($http){

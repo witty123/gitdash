@@ -2,6 +2,13 @@
 
 // Register `activityChart` component, along with its associated controller and
 // template
+
+/**
+* Inject $scope, $http and activitySearch custom service in the controller
+* ActivityChartController
+* activitySearch service updates $scope.data array which is used for updating
+* the activity chart. 
+**/
 angular.
   module('activityChart').
   component('activityChart', {

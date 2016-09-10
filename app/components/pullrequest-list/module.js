@@ -1,4 +1,4 @@
 'use strict';
 
-// Define the `repoList` module
+// Define the `pullrequestList` module
 angular.module('pullrequestList', []);

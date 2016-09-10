@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+acitivitySearch 
+Inject $http as a dependancy in activitySearch service 
+This service returns two methods:
+getActicivty: : returns events of a user in JSON format
+getSearch : returns user access token from express
+**/
+
+
 angular.
   module('activityChart').
   service('activitySearch', ['$http', function($http){

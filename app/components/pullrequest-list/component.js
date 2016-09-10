@@ -1,6 +1,17 @@
 'use strict';
 
-// Register `pullrequestList` component, along with its associated controller and template
+// Register `pullrequestList` component, along with its associated controller 
+// and template
+
+/**
+* Inject $scope, $http and pullrequestSearch custom service in the controller
+* PullrequestListController
+* pullrequestSearch service updates $scope.openPullRequests array and 
+* $scope.closedPullRequests array which is used for updating
+* the pullrequest list panel. 
+**/
+
+
 angular.
   module('pullrequestList').
   component('pullrequestList', {
