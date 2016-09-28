@@ -13,6 +13,8 @@ engines:
       - php
   eslint:
     enabled: true
+    exclude_fingerprints:
+    - 74cd3d3cf3dab02564766a2a0522b601
     checks:
       no-undef:
         enabled: false
